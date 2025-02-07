@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+About the store 
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <p> Hi This is my about page</p>
+    </div>
+    
+    {{name}}
+
+    <!-- loops -->
+     <ul>
+        {% for student in students %}
+        <ul>
+            <li>{{ student }}</li>
+        </ul>
+        {% endfor %}
+     </ul>
+
+
+     <!-- Conditionals -->
+       {% if slept %}
+       I slept
+       {% else %}
+       Did not sleep
+       {% endif %}
+
+{% endblock %}
