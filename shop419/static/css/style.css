@@ -1,3 +1,49 @@
-nav{
-    background-color: black;
+
+/* for products page */
+
+
+body{
+  margin:auto;
+}
+
+
+#products{
+  display:flex;
+}
+
+.prod-container{
+  margin:auto;
+  display:flex;
+  flex-wrap: wrap;
+  
+  .card{
+  
+    margin:10px;
+  }
+
+  .card:hover{
+    transform: scale(1.05);
+  }
+
+
+  .card-text{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons{
+    justify-content: center;
+    /* align-items: center; */
+    padding-left: 20px;
+  }
+
+  button{
+    padding: 1px;
+    border-radius: 10%;
+  }
+  
+  button:hover{
+    transform: scale(1.1);
+  }
+
 }

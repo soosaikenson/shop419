@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Products
+{% endblock %}
+
+{% block content %}
+
+<section id="products">
+    <div class="prod-container">
+      {% for p in product_list %}                                      <!--product_list is defined in djangos thing-->
+      <!-- Code for single card starts here -->
+      <div class="card">
+              <img src="{{p.pic}}" alt="" width="200px" height="250px">
+  
+          <div class="card-text">
+                <h5 class="card-title">{{p.name}}</h5>
+
+                <h5>Price : ₹<ins>{{p.price}}</ins></h5>
+
+  
+                <span style="color: black;">Qty:{{p.stock}}</span>
+
+  
+                <a href="" class="btn btn-primary">Add To Cart</a>
+  
+              
+          </div>
+  
+      </div>
+      <!-- Code for a single card ends here -->
+      {% endfor %}
+    </div>
+    
+    </section>
+  
+  
+  {% endblock %}

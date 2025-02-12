@@ -23,7 +23,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('myapp.urls')),   # to include the paths configured in the app, here 
+    path('', include('myapp.urls')),   # to include the paths configured in the app here 
+    path('auth/', include('authentication.urls')),   # login , register we will create
+    path('auth/', include('django.contrib.auth.urls')),   # logout path will take from django inbuilt contrib
 ]
 
 
