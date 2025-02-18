@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from .models import Product
 
+from django.urls import reverse_lazy
+
 # to help load the template files
 from django.template import loader
 
 # to help return an http response to the user for any given request
 from django.http import HttpResponse
 
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+# importing the genereic class based views for CRUD operations
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+
+
 
 
 # Create your views here.
@@ -40,3 +45,35 @@ def aboutView(request):
 class ProductList(ListView):
     model = Product
     template_name = 'products.html'
+
+
+
+# Create
+class AddProduct(CreateView):
+    model = Product
+    fields = ['name', 'price', 'desc', 'pic', 'stock']
+    template_name = 'addProduct.html'
+    success_url = reverse_lazy('home')
+
+# Read
+class ProductDetails(DetailView):
+    model = Product
+    template_name = 'prod_details.html'
+    context_object_name = 'prod'
+
+# Update
+from django.urls import reverse
+
+class UpdateProduct(UpdateView):
+    model = Product
+    fields = '__all__'
+    template_name = 'editProduct.html'
+
+    def get_success_url(self):
+        return reverse('prod_details', kwargs = {'pk' : self.object.pk})
+    
+# Delete 
+class DeleteProduct(DeleteView):
+    model = Product
+    template_name = 'delProduct.html'
+    success_url = reverse_lazy('home')

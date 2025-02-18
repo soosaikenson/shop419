@@ -38,7 +38,19 @@
               <li class="nav-item">
                 <a class="nav-link {% if current_page == 'products' %}border disabled{% else %}active{% endif %}" href="{% url 'products' %}">Products</a>
               </li>
-              <li class="nav-item dropdown">
+
+              {% if user.is_authenticated %}
+                   {% if user.is_superuser %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_prod' %}">Add Product</a>
+                      </li>
+                   {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="">My cart</a>
+                      </li>
+                   {% endif %}
+              {% endif %}
+              <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
                 </a>
@@ -51,12 +63,33 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li>
+              </li> -->
+
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
+            <ul class="navbar-nav">
+
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="nav-link">Logout</button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="btn btn-warning" href="{% url 'signin' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-outline-success" href="{% url 'signup' %}">Sign up</a>
+              </li>
+
+            {% endif %}
+            </ul>
           </div>
         </div>
       </nav>

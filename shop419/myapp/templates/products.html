@@ -12,7 +12,10 @@ Products
       {% for p in product_list %}                                      <!--product_list is defined in djangos thing-->
       <!-- Code for single card starts here -->
       <div class="card">
-              <img src="{{p.pic}}" alt="" width="200px" height="250px">
+              
+              <a href="{% url 'prod_details' p.pk %}">                            <!--p_details is defined in urls.py-->       
+                <img src="{{p.pic}}" alt="" width="200px" height="200px">
+              </a>
   
           <div class="card-text">
                 <h5 class="card-title">{{p.name}}</h5>
